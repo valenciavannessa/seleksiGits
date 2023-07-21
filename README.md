@@ -1,6 +1,6 @@
-Nama : Valencia Vannessa
-Role : Front-End
-Bahasa yang digunakan : Java
+- Nama : Valencia Vannessa
+- Role : Front-End
+- Bahasa yang digunakan : Java
 
 
 1. Fungsi untuk menyelesaikan rumus A000124 of Sloane’s OEIS

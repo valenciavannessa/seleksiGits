@@ -15,48 +15,50 @@ public class SeleksiGits {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
-//        System.out.println("========NOMOR 1======");
-//        System.out.println("Input : ");
-//        int no1 = input.nextInt();
-//        
-//        String output = nomor1(no1);
-//        System.out.println("Output : " + output);
-//        
-//        System.out.println("========NOMOR 2======");
-//        System.out.println("Jumlah pemain : ");
-//        int jml_pemain = input.nextInt();
-//        
-//        System.out.println("Daftar skor (terbesar - terkecil) : ");
-//        Scanner skor = new Scanner(System.in);
-//        int[] array_skor = new int[jml_pemain];
-//        
-//        for(int i = 0; i < jml_pemain; i++) {
-//            if(skor.hasNextInt()) {
-//                array_skor[i] = skor.nextInt();
-//            }
-//        }
-//
-//        System.out.println("Jumlah permainan yang diikuti : ");
-//        int jml_game = input.nextInt();
-//        
-//        System.out.println("Skor yang didapat : ");
-//        Scanner skor_game = new Scanner(System.in);
-//        int[] array_skor_game = new int[jml_game];
-//        
-//        for(int i = 0; i < jml_game; i++) {
-//            if(skor_game.hasNextInt()) {
-//                array_skor_game[i] = skor_game.nextInt();
-//            }
-//        }
-//        
-//        String hasil = nomor2(jml_pemain,array_skor, jml_game, array_skor_game);
-//        System.out.println("Output : " + hasil);
+        System.out.println("========NOMOR 1======");
+        System.out.println("Input : ");
+        int no1 = input.nextInt();
+        
+        String output = nomor1(no1);
+        System.out.println("Output : " + output);
+        
+        System.out.println("========NOMOR 2======");
+        System.out.println("Jumlah pemain : ");
+        int jml_pemain = input.nextInt();
+        
+        System.out.println("Daftar skor (terbesar - terkecil) : ");
+        Scanner skor = new Scanner(System.in);
+        int[] array_skor = new int[jml_pemain];
+        
+        for(int i = 0; i < jml_pemain; i++) {
+            if(skor.hasNextInt()) {
+                array_skor[i] = skor.nextInt();
+            }
+        }
+
+        System.out.println("Jumlah permainan yang diikuti : ");
+        int jml_game = input.nextInt();
+        
+        System.out.println("Skor yang didapat : ");
+        Scanner skor_game = new Scanner(System.in);
+        int[] array_skor_game = new int[jml_game];
+        
+        for(int i = 0; i < jml_game; i++) {
+            if(skor_game.hasNextInt()) {
+                array_skor_game[i] = skor_game.nextInt();
+            }
+        }
+        
+        String hasil = nomor2(jml_pemain,array_skor, jml_game, array_skor_game);
+        System.out.println("Output : " + hasil);
         
         System.out.println("========NOMOR 3======");
-        System.out.println("Input : ");
-        String no3 = input.nextLine();
         
-        String result = checkBalancedBracket(no3);
+        Scanner charKurung = new Scanner(System.in);
+        System.out.println("Input : ");
+        String no3 = charKurung.nextLine();
+        
+        String result = nomor3(no3);
         System.out.println(result);
     }
     
@@ -136,24 +138,21 @@ public class SeleksiGits {
         return result.toString();
     }
     
-    public static String nomor3(String kurung) {
-        
-        return "";
-    }
     
-    public static String checkBalancedBracket(String input) {
+    public static String nomor3(String kurung) {
         Stack<Character> stack = new Stack<>();
         StringBuilder explanation = new StringBuilder();
 
-        for (int i = 0; i < input.length(); i++) {
-            char currentChar = input.charAt(i);
+        for (int i = 0; i < kurung.length(); i++) {
+            char currentChar = kurung.charAt(i);
             if (currentChar == '(' || currentChar == '[' || currentChar == '{') {
-                // Jika karakter adalah buka kurung, tambahkan ke dalam stack
+                
+                //karakter buka kurung masuk ke stack
                 stack.push(currentChar);
             } else {
-                // Jika karakter adalah tutup kurung
+                //untuk karakter tutup kurung
                 if (stack.isEmpty()) {
-                    explanation.append("String ").append(currentChar).append(" tidak memiliki pasangan buka.\n");
+                    explanation.append("Penjelasan : String ").append(currentChar).append(" tidak memiliki pasangan buka.\n");
                     return "NO\n" + explanation.toString();
                 }
 
@@ -161,18 +160,17 @@ public class SeleksiGits {
                 if (currentChar == ')' && topChar != '(' ||
                     currentChar == ']' && topChar != '[' ||
                     currentChar == '}' && topChar != '{') {
-                    explanation.append("String ").append(input).append(" tidak seimbang untuk karakter yang diapit.").append(currentChar).append(" ").append(topChar);
-                    return "NO\n" + explanation.toString();
+                    explanation.append("Penjelasan : String ").append(kurung).append(" tidak seimbang.\n");
                 }
             }
         }
 
-        // Pastikan stack kosong setelah memproses semua karakter
         if (!stack.isEmpty()) {
-            explanation.append("Bracket ").append(stack.pop()).append(" tidak memiliki pasangan tutup.\n");
+            explanation.append("Penjelasan : Tanda kurung ").append(stack.pop()).append(" tidak memiliki pasangan tutup.\n");
             return "NO\n" + explanation.toString();
         }
 
-        return "YES";
+        explanation.append("Penjelasan : Setiap braket seimbang, antara braket buka dan braket tutup.\n");
+        return "YES\n" + explanation.toString();
     }
 }
